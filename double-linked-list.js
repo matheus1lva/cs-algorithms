@@ -16,6 +16,7 @@ class LinkedList {
         root = root.next;
       }
       root.next = new Node(value);
+      root.next.previous = root;
     } else {
       this.head = new Node(value);
     }
@@ -53,7 +54,3 @@ class LinkedList {
 }
 
    let linkedList = new LinkedList();
-
-    linkedList.addNode("first node");
-    linkedList.addNode("second node");
-    linkedList.addNode("thirdr node");
