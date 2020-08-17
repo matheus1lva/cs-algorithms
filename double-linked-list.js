@@ -7,7 +7,7 @@ class Node {
   }
 }
 
-class LinkedList {
+module.exports = class LinkedList {
   head = null
   addNode(value) {
     let root = this.head;
@@ -52,5 +52,3 @@ class LinkedList {
             }
     }
 }
-
-   let linkedList = new LinkedList();

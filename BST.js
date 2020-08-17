@@ -1,10 +1,13 @@
 /* Binary Search Tree */
 
 class Node {
-  constructor(data, left = null, right = null) {
+  data = null;
+  left = null;
+  right = null;
+  depth = 0;
+  constructor(data, depth) {
     this.data = data;
-    this.left = left;
-    this.right = right;
+    this.depth = depth;
   }
 }
 
@@ -15,20 +18,23 @@ class BST {
   add(data) {
     const node = this.root;
     if (node === null) {
-      this.root = new Node(data);
+      this.root = new Node(data, 1);
+      console.log(this.root.data, this.root.depth)
       return;
     } else {
       const searchTree = function(node) {
         if (data < node.data) {
           if (node.left === null) {
-            node.left = new Node(data);
+            node.left = new Node(data, node.depth + 1);
+            console.log(node.left.data, node.left.depth)
             return;
           } else if (node.left !== null) {
             return searchTree(node.left);
           }
         } else if (data > node.data) {
           if (node.right === null) {
-            node.right = new Node(data);
+            node.right = new Node(data, node.depth + 1);
+            console.log(node.right.data, node.right.depth)
             return;
           } else if (node.right !== null) {
             return searchTree(node.right);
@@ -150,7 +156,7 @@ class BST {
       return null;
     } else {
       var result = new Array();
-      function traverseInOrder(node) {       
+      function traverseInOrder(node) {
         node.left && traverseInOrder(node.left);
         result.push(node.data);
         node.right && traverseInOrder(node.right);
@@ -210,12 +216,7 @@ class BST {
   };
 }
 
-
-function convertToLinkedList(bst) {
-  
-}
-
-
+module.exports = BST;
 
 const bst = new BST();
 
@@ -228,16 +229,21 @@ bst.add(22);
 bst.add(5);
 bst.add(7);
 bst.add(20);
+bst.add(19);
+bst.add(29);
+bst.add(27);
+bst.add(30);
 
-console.log(bst.findMinHeight());
-console.log(bst.findMaxHeight());
-console.log(bst.isBalanced());
-bst.add(10);
-console.log(bst.findMinHeight());
-console.log(bst.findMaxHeight());
-console.log(bst.isBalanced());
+// console.log(bst.findMinHeight());
+// console.log(bst.findMaxHeight());
+// console.log(bst.isBalanced());
+// bst.add(10);
+// console.log(bst.findMinHeight());
+// console.log(bst.findMaxHeight());
+// console.log(bst.isBalanced());
 console.log('inOrder: ' + bst.inOrder());
-console.log('preOrder: ' + bst.preOrder());
-console.log('postOrder: ' + bst.postOrder());
+// console.log('preOrder: ' + bst.preOrder());
+// console.log('postOrder: ' + bst.postOrder());
 
-console.log('levelOrder: ' + bst.levelOrder());
+// console.log('levelOrder: ' + bst.levelOrder());
+
